@@ -32,11 +32,11 @@ const shouldBlockDeleteHotkey = (e?: KeyboardEvent): boolean => {
     (e?.target as Element | undefined) ||
     (document.activeElement as Element | null);
 
-  if (origin instanceof HTMLElement) {
+  if (origin?.nodeType === 1) {
     const tag = origin.tagName.toLowerCase();
 
     if (tag === "input" || tag === "textarea" || tag === "select") return true;
-    if (origin.isContentEditable) return true;
+    if ("isContentEditable" in origin && origin.isContentEditable) return true;
 
     const role = origin.getAttribute("role");
     if (
