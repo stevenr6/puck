@@ -46,7 +46,7 @@ describe("useDeleteHotkeys", () => {
   });
 
   const createKeydownEvent = (key: "Backspace" | "Delete") => {
-    const frameWindow = iframe.contentWindow;
+    const frameWindow = iframe.contentWindow as typeof window | null;
     if (!frameWindow) {
       throw new Error("Expected the iframe to have a window");
     }
